@@ -6,8 +6,10 @@ import Tab from './Tab.jsx';
 import TabItem from './TabItem.jsx';
 import Container from './Container.jsx';
 import StatisticContent from './StatisticContent.jsx';
+import SelectProvince from './SelectProvince.jsx';
 
-function Statistic({title}) {
+
+function Statistic({ title }) {
     const [ statisticType, setStatisticType ] = useState('province');
     const [ allData, setAllData ] = useState({});
     const [ allProvinceData, setAllProvinceData ] = useState([]);
@@ -39,6 +41,20 @@ function Statistic({title}) {
         setProvinceIndex(event.target.value);
     }
 
+    const StatisticManager = () => {
+        if (statisticType === 'all') {
+            return (
+                <StatisticContent kasus={allData.positif} 
+                    dirawat={allData.dirawat} 
+                    sembuh={allData.sembuh} 
+                    meninggal={allData.meninggal}/>
+            )
+        }
+        return (
+            <StatisticContent {...provinceData}/>
+        )
+    }
+
     return (
         <Container>
             <section className="statistic">
@@ -51,21 +67,14 @@ function Statistic({title}) {
                     {
                         statisticType !== 'all' ?
                             (
-                                <select 
-                                    style={{ width: '100%', padding: '10px', appearance: 'none', backgroundColor: 'white', border: 'none' }}
-                                    name="province-selector" value={provinceIndex} onChange={(e) => handleSelectProvince(e)}>
-                                    {allProvinceData.map((item,index) => (
-                                        <option key={item.provinsi} value={index}>{item.provinsi}</option>
-                                    ))}
-                                </select>
+                                <SelectProvince 
+                                    value={provinceIndex} 
+                                    provinces={allProvinceData} 
+                                    onSelectProvinceChange={(e) => handleSelectProvince(e)}/>
                             ) : ''
                     }
                 </header>
-                <div className="content">
-                    {
-                        statisticType === 'all' ? (<StatisticContent kasus={allData.positif} dirawat={allData.dirawat} sembuh={allData.sembuh} meninggal={allData.meninggal}/>) : (<StatisticContent {...provinceData}/>)
-                    }
-                </div>
+                {StatisticManager()}
             </section>
         </Container>
     )
