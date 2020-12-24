@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { getDataAllProvince, getDataByProvince } from '../utils/ajax.util.js';
-
 // components
 import Tab from './Tab.jsx';
 import TabItem from './TabItem.jsx';
