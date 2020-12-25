@@ -14,6 +14,7 @@ function Statistic({ title }) {
     const [ allProvinceData, setAllProvinceData ] = useState([]);
     const [ provinceData, setProvinceData ] = useState({});
     const [ provinceIndex, setProvinceIndex ] = useState(0);
+    const [ isTabActive, setIsTabActive ] = useState({ all: false, byProvince: false })
 
     useEffect(() => {
         setProvinceData(allProvinceData[provinceIndex])
@@ -21,11 +22,13 @@ function Statistic({ title }) {
 
     useEffect(() => {
         if (statisticType === 'all') {
+            setIsTabActive({...isTabActive, all: true })
             getDataAllProvince()
                 .then(result => setAllData(result))
                 .catch(err => console.log(err))
         }
         else {
+            setIsTabActive({...isTabActive, byProvince: true })
             getDataByProvince()
                 .then(result => setAllProvinceData(result))
                 .catch(err => console.log(err));
@@ -33,7 +36,14 @@ function Statistic({ title }) {
     }, [statisticType])
 
     const handleButtonClick = (type) => {
-        setStatisticType(type)
+        if (type === 'all') {
+            setStatisticType(type)
+            setIsTabActive({...isTabActive, all: true, byProvince: !isTabActive.byProvince })
+        }
+        else {
+            setStatisticType(type)
+            setIsTabActive({...isTabActive, byProvince: true, all: !isTabActive.all })
+        }
     }
 
     const handleSelectProvince = (event) => {
@@ -49,9 +59,11 @@ function Statistic({ title }) {
                     meninggal={allData.meninggal}/>
             )
         }
-        return (
-            <StatisticContent {...provinceData}/>
-        )
+        else {
+            return (
+                <StatisticContent {...provinceData}/>
+            )
+        }
     }
 
     return (
@@ -60,8 +72,8 @@ function Statistic({ title }) {
                 <header>
                     <h2>{title}</h2>
                     <Tab>
-                        <TabItem text="All" onClick={(e) => handleButtonClick('all', e)}/>
-                        <TabItem text="By Province" onClick={(e) => handleButtonClick('province', e)}/>
+                        <TabItem text="ALL" onClick={(e) => handleButtonClick('all', e)} isActive={isTabActive.all}/>
+                        <TabItem text="BY PROVINCE" onClick={(e) => handleButtonClick('province', e)} isActive={isTabActive.byProvince}/>
                     </Tab>
                     {
                         statisticType !== 'all' ?

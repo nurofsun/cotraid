@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 const StyledSelect = styled.select`
-    appearance: none;
-    padding: 7px;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 10px;
+    width: 100%;
+    padding: 8px 7px;
     background-color: white;
+    appearance: none;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 7px;
 `;
 
 function SelectProvince({ onSelectProvinceChange, provinces, ...restProps }) {

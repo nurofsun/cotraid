@@ -10,6 +10,7 @@ const StyledCard = styled.article`
     border-top-width: 10px;
     border-top-style: solid;
     border-top-color: ${props => props.color};
+    text-align: center;
     @media(min-width: 768px) {
         margin-right: 12px;
         margin-left: 12px;
@@ -23,15 +24,15 @@ const StyledCardHeader = styled.header`
 `;
 
 const StyledCardTitle = styled.h3`
-    font-weight: 500;
-    font-size: 12pt;
+    font-weight: 300;
+    font-size: 1.25rem;
     margin: 0px;
 `
 const StyledCardContent = styled.div`
     padding: 10px;
-    font-size: 22pt;
+    font-size: 2rem;
     text-align: center;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
     font-weight: bold;
 `
 
