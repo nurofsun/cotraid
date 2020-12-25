@@ -22,18 +22,25 @@ function Statistic({ title }) {
 
     useEffect(() => {
         if (statisticType === 'all') {
-            setIsTabActive({...isTabActive, all: true })
             getDataAllProvince()
                 .then(result => setAllData(result))
                 .catch(err => console.log(err))
         }
         else {
-            setIsTabActive({...isTabActive, byProvince: true })
             getDataByProvince()
                 .then(result => setAllProvinceData(result))
                 .catch(err => console.log(err));
         }
     }, [statisticType])
+
+    useEffect(() => {
+        if (statisticType === 'all') {
+            setIsTabActive({...isTabActive, all: true })
+        }
+        else {
+            setIsTabActive({...isTabActive, byProvince: true })
+        }
+    }, [])
 
     const handleButtonClick = (type) => {
         if (type === 'all') {
