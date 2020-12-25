@@ -10,6 +10,14 @@ Update COVID Statistic For Indonesian People ( Informasi Statistik Terbaru COVID
 - UI Design
 - Add reset css
 
+## Design System
+body background: #F8F8F8 
+statistic container background: #FCFCFC  
+warning: #FFEE53
+danger: #FF5368
+info: #5379FF
+success: #02E34F 
+
 ## Available Scripts
 
 ### Resources
