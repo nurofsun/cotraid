@@ -1,4 +1,5 @@
 import Statistic from './components/Statistic.jsx';
+import './css/minireset.css';
 import './App.css';
 
 function App() {
