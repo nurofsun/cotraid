@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const StyledCard = styled.article`
     padding: 10px 12px;
-    background-color: white;
     border-radius: 7px;
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
     margin-top: 10px;
@@ -11,6 +10,7 @@ const StyledCard = styled.article`
     border-top-style: solid;
     border-top-color: ${props => props.color};
     text-align: center;
+    color: ${props => props.color};
     @media(min-width: 768px) {
         margin-right: 12px;
         margin-left: 12px;
@@ -18,22 +18,19 @@ const StyledCard = styled.article`
 `;
 
 const StyledCardHeader = styled.header`
-    border-bottom: 1px solid rgba(0,0,0,0.1);
     padding-bottom: 5px;
-    margin-bottom: 10px;
 `;
 
 const StyledCardTitle = styled.h3`
-    font-weight: 300;
-    font-size: 1.25rem;
+    font-weight: medium;
+    font-size: 1rem;
     margin: 0px;
 `
 const StyledCardContent = styled.div`
-    padding: 10px;
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
-    letter-spacing: 2px;
     font-weight: bold;
+    color: #434343;
 `
 
 function Card({ title, value, ...restProps }) {

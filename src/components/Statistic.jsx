@@ -60,9 +60,9 @@ function Statistic({ title }) {
     const StatisticManager = () => {
         if (statisticType === 'all') {
             return (
-                <StatisticContent kasus={allData.positif} 
-                    dirawat={allData.dirawat} 
-                    sembuh={allData.sembuh} 
+                <StatisticContent kasus={allData.positif}
+                    dirawat={allData.dirawat}
+                    sembuh={allData.sembuh}
                     meninggal={allData.meninggal}/>
             )
         }
@@ -76,8 +76,8 @@ function Statistic({ title }) {
     return (
         <Container>
             <section className="statistic">
-                <header>
-                    <h2>{title}</h2>
+                <header style={{ padding: '15px 10px' }}>
+                    <h2 style={{ marginTop: '0px', marginRight: '0px', marginLeft: '0px', marginBottom: '10px'}}>{title}</h2>
                     <Tab>
                         <TabItem text="ALL" onClick={(e) => handleButtonClick('all', e)} isActive={isTabActive.all}/>
                         <TabItem text="BY PROVINCE" onClick={(e) => handleButtonClick('province', e)} isActive={isTabActive.byProvince}/>
@@ -85,9 +85,9 @@ function Statistic({ title }) {
                     {
                         statisticType !== 'all' ?
                             (
-                                <SelectProvince 
-                                    value={provinceIndex} 
-                                    provinces={allProvinceData} 
+                                <SelectProvince
+                                    value={provinceIndex}
+                                    provinces={allProvinceData}
                                     onSelectProvinceChange={(e) => handleSelectProvince(e)}/>
                             ) : ''
                     }
