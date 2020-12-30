@@ -1,16 +1,19 @@
 import styled from 'styled-components';
 import './css/minireset.css';
 import './App.css';
+import BannerSvg from './banner.svg';
 
 import Container from './components/Container.jsx';
 import Row from './components/Row.jsx';
 import Column from './components/Column.jsx';
-import StatisticContainer from './components/StatisticContainer.jsx';
-import StatisticAll from './components/StatisticAll.jsx';
-import StatisticByProvince from './components/StatisticByProvince.jsx';
+import Banner from './components/Banner.jsx';
+import Statistic from './components/Statistic.jsx';
 
 const StyledApp = styled.main`
-    background-color: var(--bg-body);
+    background-image: url(${BannerSvg});
+    background-size: content;
+    background-position: left;
+    background-repeat: no-repeat;
     height: 100vh;
 `;
 
@@ -21,15 +24,10 @@ function App() {
         <Container>
             <Row multiline>
                 <Column size="2">
-                    Title
+                    <Banner title="cotraid" desc="Get the new statistic COVID-19 for all provinces"/>
                 </Column>
                 <Column size="2">
-                    <StatisticContainer title="By Province">
-                        <StatisticByProvince/>
-                    </StatisticContainer>
-                    <StatisticContainer title="Overall">
-                        <StatisticAll/>
-                    </StatisticContainer>
+                    <Statistic/>
                 </Column>
             </Row>
         </Container>

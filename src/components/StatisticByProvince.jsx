@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { getDataByProvince } from '../utils/ajax.util.js';
 
@@ -7,11 +8,41 @@ import Row from './Row.jsx';
 import Column from './Column.jsx';
 import Card from './Card.jsx';
 
+const WarningCard = styled(Card)`
+    background-color: var(--color-warning-softer);
+    color: var(--color-warning);
+    border: 1px solid var(--color-warning);
+`;
+
+const DangerCard = styled(Card)`
+    background-color: var(--color-danger-softer);
+    color: var(--color-danger);
+    border: 1px solid var(--color-danger);
+`;
+
+const SuccessCard = styled(Card)`
+    background-color: var(--color-success-softer);
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
+`;
+
+const InfoCard = styled(Card)`
+    background-color: var(--color-info-softer);
+    color: var(--color-info);
+    border: 1px solid var(--color-info);
+`;
+
+const StyledStatisticByProvince = styled.div`
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+`;
+
 function StatisticByProvince() {
     const [ fetchData, setFetchData ] = useState([]);
-    const [ filterableFetchData, setFilterableFetchData ] = useState(null);
-    const [ fetchError, setFetchError ] = useState(null);
-    const [ dataProvince, setDataProvince ] = useState(null);
+    const [ filterableFetchData, setFilterableFetchData ] = useState([]);
+    const [ fetchError, setFetchError ] = useState('');
+    const [ dataProvince, setDataProvince ] = useState({});
     const [ provinceIndex, setProvinceIndex ] = useState(0);
     const [ inputTextProvince, setInputTextProvince ] = useState('');
     const [ optionIsActive, setOptionIsActive ] = useState(false);
@@ -19,9 +50,10 @@ function StatisticByProvince() {
     useEffect(() => {
         getDataByProvince()
             .then(result => {
-                console.log(result)
                 setFetchData(result);
                 setFilterableFetchData(result);
+                setDataProvince(result[provinceIndex]);
+                setInputTextProvince(result[provinceIndex].provinsi);
             })
             .catch(err => setFetchError(err));
     }, [])
@@ -33,8 +65,8 @@ function StatisticByProvince() {
     },[])
 
     useEffect(() => {
-        setDataProvince(fetchData[provinceIndex]);
-    }, [fetchData, provinceIndex])
+        setDataProvince(filterableFetchData[provinceIndex])
+    }, [optionIsActive])
 
     const handleSelectorItemClick = (event) => {
         event.stopPropagation();
@@ -49,7 +81,6 @@ function StatisticByProvince() {
         let filtered = filterableFetchData.filter(item => {
             return regex.test(item.provinsi);
         })
-
         if (event.target.value === '' || filtered.length === 0) {
             setFilterableFetchData(fetchData);
         } else {
@@ -57,40 +88,40 @@ function StatisticByProvince() {
         }
     }
 
-    const handleSelectorFocus = (event) => {
+    const handleSelectorClick = (event) => {
         event.stopPropagation();
         setOptionIsActive(true)
     }
 
     return (
-        <div className="by-province">
+        <StyledStatisticByProvince>
             <ProvinceSelector
                 inputOnChange={(e) => handleSelectorInputChange(e)}
                 inputValue={inputTextProvince}
-                inputOnClick={handleSelectorFocus}
+                inputOnClick={handleSelectorClick}
                 itemOnClick={(e) => handleSelectorItemClick(e)}
                 optionIsActive={optionIsActive}
                 options={filterableFetchData}/>
             {dataProvince && (
-            <Row multiline>
+            <Row multiline style={{ marginTop: '10px'}}>
                 <Column size="2">
-                    <Card title="Kasus" value={dataProvince.kasus}/>
+                    <WarningCard title="Kasus" value={dataProvince.kasus}/>
                 </Column>
                 <Column size="2">
-                    <Card title="Dirawat" value={dataProvince.dirawat}/>
+                    <InfoCard title="Dirawat" value={dataProvince.dirawat}/>
                 </Column>
                 <Column size="2">
-                    <Card title="Sembuh" value={dataProvince.sembuh}/>
+                    <SuccessCard title="Sembuh" value={dataProvince.sembuh}/>
                 </Column>
                 <Column size="2">
-                    <Card title="Meninggal" value={dataProvince.meninggal}/>
+                    <DangerCard title="Meninggal" value={dataProvince.meninggal}/>
                 </Column>
             </Row>
             )}
             {fetchError && (
                 <p>{fetchError}</p>
             )}
-        </div>
+        </StyledStatisticByProvince>
     )
 }
 

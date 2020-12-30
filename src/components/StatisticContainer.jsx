@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 
 const StyledStatisticContainer = styled.section`
-    padding: 15px;
+    padding: 10px 15px;
 `;
 
-function StatisticContainer({children, title}) {
+function StatisticContainer({children}) {
     return (
         <StyledStatisticContainer>
-            <header>
-                <h3>{title}</h3>
-            </header>
             {children}
         </StyledStatisticContainer>
     )

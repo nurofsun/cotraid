@@ -1,10 +1,33 @@
+import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { getDataAllProvince } from '../utils/ajax.util.js';
 
 // components
-import Statistic from './Statistic.jsx';
 import Row from './Row.jsx';
 import Column from './Column.jsx';
+
+const StyledOverAll = styled.div`
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 5px 10px 0px rgba(53,53,53,0.2);
+    padding: 10px 15px;
+    & .title {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        margin-top: 0px;
+        font-weight: bold;
+        color: var(--color-dark);
+    }
+    & h6 {
+        color: var(--color-dark);
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    & p {
+        font-size: 1.2rem;
+        color: var(--color-dark-softer);
+    }
+`;
 
 function StatisticAll() {
     const [ fetchData, setFetchData ] = useState(null);
@@ -20,8 +43,8 @@ function StatisticAll() {
     }, [])
 
     return (
-        <Statistic>
-            <div className="overall">
+        <StyledOverAll>
+                <h3 className="title">Overall</h3>
                 {
                     fetchData &&
                     (
@@ -56,8 +79,7 @@ function StatisticAll() {
                 {
                     fetchError && (<p>{fetchError}</p>)
                 }
-            </div>
-        </Statistic>
+        </StyledOverAll>
     )
 }
 

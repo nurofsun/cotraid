@@ -1,47 +1,43 @@
 import styled from 'styled-components';
 
 const StyledCard = styled.article`
-    padding: 10px 12px;
-    border-radius: 7px;
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+    border-radius: 12px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border-top-width: 10px;
-    border-top-style: solid;
-    border-top-color: ${props => props.color};
     text-align: center;
-    color: ${props => props.color};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    & > header {
+        padding: 10px 12px;
+    }
+    & > header .title {
+        font-size: 1rem;
+        font-weight: medium;
+        text-transform: uppercase;
+    }
+    & > .content {
+        padding: 0px 10px 10px 10px;
+        font-size: 2.7rem;
+        font-weight: bold;
+    }
     @media(min-width: 768px) {
         margin-right: 12px;
         margin-left: 12px;
     }
 `;
 
-const StyledCardHeader = styled.header`
-    padding-bottom: 5px;
-`;
-
-const StyledCardTitle = styled.h3`
-    font-weight: medium;
-    font-size: 1rem;
-    margin: 0px;
-`
-const StyledCardContent = styled.div`
-    font-size: 2.5rem;
-    text-align: center;
-    font-weight: bold;
-    color: #434343;
-`
 
 function Card({ title, value, ...restProps }) {
     return (
         <StyledCard {...restProps}>
-            <StyledCardHeader>
-                <StyledCardTitle>{title}</StyledCardTitle>
-            </StyledCardHeader>
-            <StyledCardContent>
+            <header>
+                <h3 className="title">{title}</h3>
+            </header>
+            <div className="content">
                 {value}
-            </StyledCardContent>
+            </div>
         </StyledCard>
     )
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as ArrowDownIcon } from '../icons/arrowDown.svg';
 
 const StyledProvinceSelector = styled.div`
     position: relative;
@@ -6,7 +7,6 @@ const StyledProvinceSelector = styled.div`
 
 const StyledProvinceSelectorInput = styled.input`
     background-color: white;
-    font-weight: bold;
     padding: 10px 12px;
     color: var(--color-dark);
     width: 100%;
@@ -16,6 +16,18 @@ const StyledProvinceSelectorInput = styled.input`
     font-size: 1rem;
     box-shadow: 0px 0px 3px 0px rgba(53,53,53,0.1);
     border-radius: 7px;
+`;
+
+const StyledIconWrapper = styled.span`
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin: 5px;
+    & svg {
+        width: 32px;
+        height: auto;
+        fill: var(--color-dark-softer);
+    }
 `;
 
 const StyledProvinceOptions = styled.ul`
@@ -28,8 +40,7 @@ const StyledProvinceOptions = styled.ul`
     background-color: white;
     border-radius: 10px;
     width: 100%;
-    overflow: auto;
-    height: 325px;
+    height: auto;
     box-shadow: 0px 2px 5px 0px rgba(53,53,53,0.1);
 `;
 
@@ -49,7 +60,7 @@ const StyledProvinceSelectorItem = styled.li`
 function ProvinceSelector({ options, inputOnChange, inputOnClick, inputOnBlur, itemOnClick, inputValue, optionIsActive }) {
     return (
         <StyledProvinceSelector>
-            <StyledProvinceSelectorInput type="text" onBlur={inputOnBlur} onClick={inputOnClick} onChange={inputOnChange} value={inputValue}/>
+            <StyledProvinceSelectorInput type="text" onClick={inputOnClick} onChange={inputOnChange} value={inputValue}/>
             <StyledProvinceOptions isActive={optionIsActive}>
                 {
                     options &&
@@ -58,6 +69,10 @@ function ProvinceSelector({ options, inputOnChange, inputOnClick, inputOnBlur, i
                     ))
                 }
             </StyledProvinceOptions>
+            <StyledIconWrapper>
+                <ArrowDownIcon>
+                </ArrowDownIcon>
+            </StyledIconWrapper>
         </StyledProvinceSelector>
     )
 }
