@@ -42,6 +42,8 @@ const StyledProvinceOptions = styled.ul`
     z-index: 10;
     background-color: white;
     border-radius: 10px;
+    max-height: 500px;
+    overflow-y: auto;
     width: 100%;
     height: auto;
     box-shadow: 0px 2px 5px 0px rgba(53,53,53,0.1);

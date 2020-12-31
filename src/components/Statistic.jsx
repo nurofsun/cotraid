@@ -6,6 +6,8 @@ import StatisticAll from './StatisticAll.jsx';
 
 
 const StyledStatistic = styled.section`
+    display: flex;
+    flex-direction: column-reverse;
     & header {
         padding: 10px 0px 0px 0px;
     }
@@ -15,6 +17,7 @@ const StyledStatistic = styled.section`
         color: white;
     }
     @media (min-width: 768px) {
+        flex-direction: column;
         & h2 {
             color: var(--color-dark);
         }
@@ -27,8 +30,8 @@ function Statistic() {
             <header>
                 <h2>Statistic</h2>
             </header>
-            <StatisticByProvince/>
             <StatisticAll/>
+            <StatisticByProvince/>
         </StyledStatistic>
     )
 }

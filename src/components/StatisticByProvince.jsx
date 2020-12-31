@@ -36,6 +36,19 @@ const StyledStatisticByProvince = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
+    & > header > .title {
+        font-weight: bold;
+        font-size: 1rem;
+        text-transform: uppercase;
+        text-align: left !important;
+        margin-bottom: 10px;
+        color: white;
+    }
+    @media (min-width: 768px) {
+        & > header > .title {
+            color: var(--color-dark);
+        }
+    }
 `;
 
 function StatisticByProvince() {
@@ -90,6 +103,11 @@ function StatisticByProvince() {
 
     return (
         <StyledStatisticByProvince>
+            <header>
+                <h3 className="title">
+                    By Province
+                </h3>
+            </header>
             <ProvinceSelector
                 inputOnChange={(e) => handleSelectorInputChange(e)}
                 inputValue={inputTextProvince}

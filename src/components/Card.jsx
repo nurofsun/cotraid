@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import AnimationCount from 'react-count-animation';
 const StyledCard = styled.article`
     border-radius: 12px;
     margin-top: 10px;
@@ -31,13 +31,21 @@ const StyledCard = styled.article`
 
 
 function Card({ title, value, ...restProps }) {
+    const animationSettings = {
+        start: 0,
+        count: value,
+        duration: 2000,
+        decimals: 0,
+        useGroup: true,
+        animation: 'up'
+    }
     return (
         <StyledCard {...restProps}>
             <header>
                 <h3 className="title">{title}</h3>
             </header>
             <div className="content">
-                {value}
+                <AnimationCount {...animationSettings}/>
             </div>
         </StyledCard>
     )

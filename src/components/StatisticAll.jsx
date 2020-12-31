@@ -5,22 +5,23 @@ import { getDataAllProvince } from '../utils/ajax.util.js';
 const StyledOverAll = styled.section`
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0px 5px 10px 0px rgba(53,53,53,0.2);
-    padding: 10px 15px;
+    padding: 10px;
     & .title {
         margin-bottom: 10px;
-        font-size: 1.5rem;
+        font-size: 1rem;
+        text-transform: uppercase;
         margin-top: 0px;
         font-weight: bold;
         color: var(--color-dark);
+        text-align: left !important;
     }
     & h6 {
-        color: var(--color-dark);
-        font-size: 1.2rem;
+        color: var(--color-dark-softer);
+        font-size: 1rem;
         margin-bottom: 5px;
     }
     & p {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         color: var(--color-dark-softer);
     }
     & .overall-statistic {
@@ -30,6 +31,7 @@ const StyledOverAll = styled.section`
     }
     & .overall-column {
         width: 50%;
+        flex-grow: 1;
     }
     & .overall-item {
         padding: 10px;

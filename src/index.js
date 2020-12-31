@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'react-count-animation/dist/count.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

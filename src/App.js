@@ -27,7 +27,7 @@ function App() {
             <Row multiline>
                 <Column size="2">
                     <Banner title={<span>Cotra<span style={{color: 'var(--color-danger)'}}>ID</span></span>}
-                    desc="Get the new statistic COVID-19 for all provinces."/>
+                    desc="Get new statistic COVID-19 for all provinces of Indonesia."/>
                 </Column>
                 <Column size="2">
                     <Statistic/>
