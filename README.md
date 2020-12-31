@@ -3,7 +3,7 @@ Cotraid
 COVID-19 Tracker tool to get new statistic all provinces of indonesia.
 
 ## Thanks to:
-- [API Covid Indonesia v2](https://apicovid19indonesia-v2.vercel.app/api/)
+- [Reynadi531 (API Covid Indonesia v2)](https://github.com/Reynadi531/api-covid19-indonesia-v2)
 
 ## Available Scripts
 
