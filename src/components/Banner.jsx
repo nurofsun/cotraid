@@ -4,10 +4,11 @@ const StyledBanner = styled.header`
     color: white;
     padding-top: 10px;
     max-width: 400px;
-    & > h2 {
+    & h2 {
         font-size: 2rem;
         font-weight: bold;
         line-height: 1.25;
+        text-transform: uppercase;
     }
     & desc {
 
@@ -19,13 +20,18 @@ const StyledBanner = styled.header`
         & .desc {
             font-size: 2rem;
         }
+        height: 100vh;
+        display: flex;
+        align-items: center;
     }
 `;
 function Banner({title, desc}) {
     return (
         <StyledBanner>
-            <h2>{title}</h2>
-            <p className="desc">{desc}</p>
+            <div>
+                <h2>{title}</h2>
+                <p className="desc">{desc}</p>
+            </div>
         </StyledBanner>
     )
 }

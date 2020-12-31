@@ -6,7 +6,7 @@ import { getDataAllProvince } from '../utils/ajax.util.js';
 import Row from './Row.jsx';
 import Column from './Column.jsx';
 
-const StyledOverAll = styled.div`
+const StyledOverAll = styled.section`
     background-color: white;
     border-radius: 12px;
     box-shadow: 0px 5px 10px 0px rgba(53,53,53,0.2);
@@ -27,6 +27,27 @@ const StyledOverAll = styled.div`
         font-size: 1.2rem;
         color: var(--color-dark-softer);
     }
+    & .overall-statistic {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    & .overall-column {
+        width: 50%;
+    }
+    & .overall-item {
+        padding: 10px;
+        margin-right: 5px;
+    }
+    & .overall-item::last-child {
+        margin-right: 0px;
+    }
+
+    @media (min-width: 768px) {
+        .overall-column {
+            width: auto;
+        }
+    }
 `;
 
 function StatisticAll() {
@@ -44,36 +65,38 @@ function StatisticAll() {
 
     return (
         <StyledOverAll>
-                <h3 className="title">Overall</h3>
+                <header>
+                    <h3 className="title">Overall</h3>
+                </header>
                 {
                     fetchData &&
                     (
-                        <Row multiline>
-                            <Column size="4">
+                        <div className="overall-statistic">
+                            <div class="overall-column">
                                 <div className="overall-item">
                                     <h6>Positif</h6>
                                     <p>{fetchData.positif}</p>
                                 </div>
-                            </Column>
-                            <Column size="4">
+                            </div>
+                            <div class="overall-column">
                                 <div className="overall-item">
                                     <h6>Dirawat</h6>
                                     <p>{fetchData.dirawat}</p>
                                 </div>
-                            </Column>
-                            <Column size="4">
+                            </div>
+                            <div class="overall-column">
                                 <div className="overall-item">
                                     <h6>Sembuh</h6>
                                     <p>{fetchData.sembuh}</p>
                                 </div>
-                            </Column>
-                            <Column size="4">
+                            </div>
+                            <div class="overall-column">
                                 <div className="overall-item">
                                     <h6>Meninggal</h6>
                                     <p>{fetchData.meninggal}</p>
                                 </div>
-                            </Column>
-                        </Row>
+                            </div>
+                        </div>
                     )
                 }
                 {

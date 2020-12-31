@@ -14,8 +14,11 @@ const StyledProvinceSelectorInput = styled.input`
     appearance: none;
     outline: none;
     font-size: 1rem;
-    box-shadow: 0px 0px 3px 0px rgba(53,53,53,0.1);
+    box-shadow: 0px 0px 2px 1px rgba(53,53,53,0.1);
     border-radius: 7px;
+    &:focus {
+        box-shadow: 0px 0px 0px 2px rgba(53.53,53,0.2);
+    }
 `;
 
 const StyledIconWrapper = styled.span`

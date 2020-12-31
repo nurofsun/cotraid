@@ -15,6 +15,8 @@ const StyledApp = styled.main`
     background-position: left;
     background-repeat: no-repeat;
     height: 100vh;
+    @media (min-width: 768px) {
+    }
 `;
 
 
@@ -24,7 +26,8 @@ function App() {
         <Container>
             <Row multiline>
                 <Column size="2">
-                    <Banner title="cotraid" desc="Get the new statistic COVID-19 for all provinces"/>
+                    <Banner title={<span>Cotra<span style={{color: 'var(--color-danger)'}}>ID</span></span>}
+                    desc="Get the new statistic COVID-19 for all provinces."/>
                 </Column>
                 <Column size="2">
                     <Statistic/>

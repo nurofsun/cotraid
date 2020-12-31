@@ -6,6 +6,7 @@ const StyledCard = styled.article`
     margin-bottom: 10px;
     text-align: center;
     display: flex;
+    height: 150px;
     align-items: center;
     justify-content: center;
     flex-direction: column;

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Cotraid",
+  "name": "COVID-19 Tracker For All Provinces Of Indonesia",
   "icons": [
     {
       "src": "favicon.ico",
