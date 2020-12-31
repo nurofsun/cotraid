@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 // components
-import StatisticContainer from './StatisticContainer.jsx';
 import StatisticByProvince from './StatisticByProvince.jsx';
 import StatisticAll from './StatisticAll.jsx';
 

@@ -43,7 +43,6 @@ function StatisticByProvince() {
     const [ filterableFetchData, setFilterableFetchData ] = useState([]);
     const [ fetchError, setFetchError ] = useState('');
     const [ dataProvince, setDataProvince ] = useState({});
-    const [ provinceIndex, setProvinceIndex ] = useState(0);
     const [ inputTextProvince, setInputTextProvince ] = useState('');
     const [ optionIsActive, setOptionIsActive ] = useState(false);
 
@@ -52,8 +51,8 @@ function StatisticByProvince() {
             .then(result => {
                 setFetchData(result);
                 setFilterableFetchData(result);
-                setDataProvince(result[provinceIndex]);
-                setInputTextProvince(result[provinceIndex].provinsi);
+                setDataProvince(result[0]);
+                setInputTextProvince(result[0].provinsi);
             })
             .catch(err => setFetchError(err));
     }, [])
@@ -64,13 +63,9 @@ function StatisticByProvince() {
         });
     },[])
 
-    useEffect(() => {
-        setDataProvince(filterableFetchData[provinceIndex])
-    }, [optionIsActive])
-
     const handleSelectorItemClick = (event) => {
         event.stopPropagation();
-        setProvinceIndex(event.target.value);
+        setDataProvince(filterableFetchData[event.target.value])
         setInputTextProvince(event.target.textContent);
         setOptionIsActive(false);
     }
