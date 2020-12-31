@@ -72,25 +72,25 @@ function StatisticAll() {
                         <div className="overall-statistic">
                             <div class="overall-column">
                                 <div className="overall-item">
-                                    <h6>Positif</h6>
+                                    <h6>Cases</h6>
                                     <p>{fetchData.positif}</p>
                                 </div>
                             </div>
                             <div class="overall-column">
                                 <div className="overall-item">
-                                    <h6>Dirawat</h6>
+                                    <h6>Active</h6>
                                     <p>{fetchData.dirawat}</p>
                                 </div>
                             </div>
                             <div class="overall-column">
                                 <div className="overall-item">
-                                    <h6>Sembuh</h6>
+                                    <h6>Recovered</h6>
                                     <p>{fetchData.sembuh}</p>
                                 </div>
                             </div>
                             <div class="overall-column">
                                 <div className="overall-item">
-                                    <h6>Meninggal</h6>
+                                    <h6>Deaths</h6>
                                     <p>{fetchData.meninggal}</p>
                                 </div>
                             </div>

@@ -118,16 +118,16 @@ function StatisticByProvince() {
             {dataProvince && (
             <Row multiline style={{ marginTop: '10px'}}>
                 <Column size="2">
-                    <WarningCard title="Kasus" value={dataProvince.kasus}/>
+                    <WarningCard title="Cases" value={dataProvince.kasus}/>
                 </Column>
                 <Column size="2">
-                    <InfoCard title="Dirawat" value={dataProvince.dirawat}/>
+                    <InfoCard title="Active" value={dataProvince.dirawat}/>
                 </Column>
                 <Column size="2">
-                    <SuccessCard title="Sembuh" value={dataProvince.sembuh}/>
+                    <SuccessCard title="Recovered" value={dataProvince.sembuh}/>
                 </Column>
                 <Column size="2">
-                    <DangerCard title="Meninggal" value={dataProvince.meninggal}/>
+                    <DangerCard title="Deaths" value={dataProvince.meninggal}/>
                 </Column>
             </Row>
             )}
