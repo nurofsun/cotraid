@@ -2,10 +2,6 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { getDataAllProvince } from '../utils/ajax.util.js';
 
-// components
-import Row from './Row.jsx';
-import Column from './Column.jsx';
-
 const StyledOverAll = styled.section`
     background-color: white;
     border-radius: 12px;
