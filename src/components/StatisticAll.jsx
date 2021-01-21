@@ -1,52 +1,18 @@
-import styled from 'styled-components';
+import tw, { styled } from 'twin.macro';
 import { useState, useEffect } from 'react';
 import { getDataAllProvince } from '../utils/ajax.util.js';
+// components
+import Card from './Card.jsx';
+import Subtitle from './Subtitle.jsx';
 
-const StyledOverAll = styled.section`
-    background-color: white;
-    border-radius: 12px;
-    padding: 10px;
-    & .title {
-        margin-bottom: 10px;
-        font-size: 1rem;
-        text-transform: uppercase;
-        margin-top: 0px;
-        font-weight: bold;
-        color: var(--color-dark);
-        text-align: left !important;
-    }
-    & h6 {
-        color: var(--color-dark-softer);
-        font-size: 1rem;
-        margin-bottom: 5px;
-    }
-    & p {
-        font-size: 1.3rem;
-        color: var(--color-dark-softer);
-    }
-    & .overall-statistic {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    & .overall-column {
-        width: 50%;
-        flex-grow: 1;
-    }
-    & .overall-item {
-        padding: 10px;
-        margin-right: 5px;
-    }
-    & .overall-item::last-child {
-        margin-right: 0px;
-    }
-
-    @media (min-width: 768px) {
-        .overall-column {
-            width: auto;
-        }
-    }
+const StyledStatisticAll = styled.section`
+    ${tw`md:mr-2 pt-1`}
 `;
+
+const StyledStatisticAllCard = styled(Card)`
+    ${tw`mb-3 text-left px-3 py-2 border border-yellow-500`}
+`;
+
 
 function StatisticAll() {
     const [ fetchData, setFetchData ] = useState(null);
@@ -55,52 +21,29 @@ function StatisticAll() {
     useEffect(() => {
         getDataAllProvince()
             .then(result => {
-                console.log(result)
                 setFetchData(result)
             })
             .catch(err => setFetchError(err));
     }, [])
 
     return (
-        <StyledOverAll>
-                <header>
-                    <h3 className="title">Overall</h3>
-                </header>
-                {
-                    fetchData &&
-                    (
-                        <div className="overall-statistic">
-                            <div class="overall-column">
-                                <div className="overall-item">
-                                    <h6>Cases</h6>
-                                    <p>{fetchData.positif}</p>
-                                </div>
-                            </div>
-                            <div class="overall-column">
-                                <div className="overall-item">
-                                    <h6>Active</h6>
-                                    <p>{fetchData.dirawat}</p>
-                                </div>
-                            </div>
-                            <div class="overall-column">
-                                <div className="overall-item">
-                                    <h6>Recovered</h6>
-                                    <p>{fetchData.sembuh}</p>
-                                </div>
-                            </div>
-                            <div class="overall-column">
-                                <div className="overall-item">
-                                    <h6>Deaths</h6>
-                                    <p>{fetchData.meninggal}</p>
-                                </div>
-                            </div>
-                        </div>
-                    )
+        <StyledStatisticAll>
+            <header>
+                <Subtitle text="Overall"/>
+            </header>
+                { fetchData && (
+                    <>
+                        <StyledStatisticAllCard title="Cases" value={fetchData.positif}/>
+                        <StyledStatisticAllCard title="Active" value={fetchData.dirawat}/>
+                        <StyledStatisticAllCard title="Recovered" value={fetchData.sembuh}/>
+                        <StyledStatisticAllCard title="Deaths" value={fetchData.meninggal}/>
+                    </>
+                ) 
                 }
                 {
                     fetchError && (<p>{fetchError}</p>)
                 }
-        </StyledOverAll>
+        </StyledStatisticAll>
     )
 }
 

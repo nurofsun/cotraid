@@ -1,36 +1,23 @@
-import styled from 'styled-components';
 import AnimationCount from 'react-count-animation';
-const StyledCard = styled.article`
-    border-radius: 12px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    display: flex;
-    height: 150px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    & > header {
-        padding: 10px 12px;
-    }
-    & > header .title {
-        font-size: 1rem;
-        font-weight: medium;
-        text-transform: uppercase;
-    }
-    & > .content {
-        padding: 0px 10px 10px 10px;
-        font-size: 2.7rem;
-        font-weight: bold;
-    }
-    @media(min-width: 768px) {
-        margin-right: 12px;
-        margin-left: 12px;
-    }
+import tw, { styled } from 'twin.macro';
+
+const StyledCard = styled.div`
+    ${tw`bg-gray-700 p-3 text-center rounded-md overflow-hidden border-yellow-500`}
 `;
 
+const StyledCardTitle = styled.h3(({size}) => [
+    tw`text-gray-100 text-lg text-xl mb-2`,
+    size === 'small' && tw`text-base md:text-lg`,
+    size === 'large' && tw`text-xl md:text-3xl`
+])
 
-function Card({ title, value, ...restProps }) {
+const StyledCardContent = styled.div(({size}) => [
+    tw`text-gray-100 text-lg text-xl`,
+    size === 'small' && tw`text-base md:text-lg`,
+    size === 'large' && tw`text-xl md:text-3xl`
+])
+
+function Card({ title, value, size, ...restProps }) {
     const animationSettings = {
         start: 0,
         count: value,
@@ -42,11 +29,13 @@ function Card({ title, value, ...restProps }) {
     return (
         <StyledCard {...restProps}>
             <header>
-                <h3 className="title">{title}</h3>
+                <StyledCardTitle size={size}>
+                    {title} 
+                </StyledCardTitle>
             </header>
-            <div className="content">
+            <StyledCardContent size={size}>
                 <AnimationCount {...animationSettings}/>
-            </div>
+            </StyledCardContent>
         </StyledCard>
     )
 }

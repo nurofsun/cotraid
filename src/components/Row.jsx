@@ -1,12 +1,8 @@
-import styled from 'styled-components';
+import tw, { styled } from 'twin.macro';
 
 const StyledRow = styled.div`
-    flex-wrap: ${props => props.multiline ? "wrap" : "nowrap" };
-    display: flex;
-    flex-direction: row;
-`;
-
-
+    ${tw`flex flex-row flex-wrap`}
+`
 function Row({...restProps}) {
     return (
         <StyledRow {...restProps}/>

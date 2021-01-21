@@ -1,15 +1,7 @@
-import styled from 'styled-components';
+import tw, { styled } from 'twin.macro';
 
 const StyledContainer = styled.div`
-    width: 100%;
-    padding: 0px 15px 15px 15px;
-    border-radius: 10px;
-    @media (min-width: 1080px) {
-        max-width: 1080px;
-        margin: 0px auto;
-        flex-shrink: 0;
-        flex-grow: 1;
-    }
+    ${tw`max-w-screen-lg mx-auto px-4 pt-3`}
 `;
 
 function Container({ children }) {

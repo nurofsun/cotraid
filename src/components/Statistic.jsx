@@ -1,38 +1,34 @@
-import styled from 'styled-components';
-
+import tw, { styled } from 'twin.macro';
 // components
+import Title from './Title.jsx';
+import Row from './Row.jsx';
+import Column from './Column.jsx';
 import StatisticByProvince from './StatisticByProvince.jsx';
 import StatisticAll from './StatisticAll.jsx';
+import Footer from './Footer.jsx';
 
-
-const StyledStatistic = styled.section`
-    display: flex;
-    flex-direction: column-reverse;
-    & header {
-        padding: 10px 0px 0px 0px;
-    }
-    & h2 {
-        font-size: 2rem;
-        font-weight: 500;
-        color: white;
-    }
-    @media (min-width: 768px) {
-        flex-direction: column;
-        & h2 {
-            color: var(--color-dark);
-        }
-    }
+const StyledStatisticHeader = styled.header`
+    ${tw`mb-3`}
 `;
 
 function Statistic() {
     return (
-        <StyledStatistic>
-            <header>
-                <h2>Statistic</h2>
-            </header>
-            <StatisticAll/>
-            <StatisticByProvince/>
-        </StyledStatistic>
+        <section>
+            <StyledStatisticHeader>
+                <Title text="Statistic"/>
+            </StyledStatisticHeader>
+            <Row>
+                <Column size="two">
+                    <StatisticAll/>
+                </Column>
+                <Column size="ten">
+                    <StatisticByProvince/>
+                    <Footer>
+                        Cotraid &copy; 2021 
+                    </Footer>
+                </Column>
+            </Row>
+        </section>
     )
 }
 

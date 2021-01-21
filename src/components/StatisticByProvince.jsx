@@ -1,54 +1,32 @@
-import styled from 'styled-components';
+import tw, { styled } from 'twin.macro';
 import { useState, useEffect } from 'react';
 import { getDataByProvince } from '../utils/ajax.util.js';
 
 // components
-import ProvinceSelector from './ProvinceSelector.jsx';
 import Row from './Row.jsx';
 import Column from './Column.jsx';
+import Subtitle from './Subtitle.jsx';
+import ProvinceSelector from './ProvinceSelector.jsx';
 import Card from './Card.jsx';
 
 const WarningCard = styled(Card)`
-    background-color: var(--color-warning-softer);
-    color: var(--color-warning);
-    border: 1px solid var(--color-warning);
+    ${tw`bg-yellow-50 border border-yellow-100 bg-gray-800 rounded-md md:m-2 mb-2`}
 `;
 
 const DangerCard = styled(Card)`
-    background-color: var(--color-danger-softer);
-    color: var(--color-danger);
-    border: 1px solid var(--color-danger);
+    ${tw`bg-gray-800 rounded-md overflow-hidden md:m-2 mb-2`}
 `;
 
 const SuccessCard = styled(Card)`
-    background-color: var(--color-success-softer);
-    color: var(--color-success);
-    border: 1px solid var(--color-success);
+    ${tw`bg-gray-800 rounded-md overflow-hidden md:m-2 mb-2`}
 `;
 
 const InfoCard = styled(Card)`
-    background-color: var(--color-info-softer);
-    color: var(--color-info);
-    border: 1px solid var(--color-info);
+    ${tw`bg-gray-800 rounded-md overflow-hidden md:m-2 mb-2`}
 `;
 
-const StyledStatisticByProvince = styled.div`
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    & > header > .title {
-        font-weight: bold;
-        font-size: 1rem;
-        text-transform: uppercase;
-        text-align: left !important;
-        margin-bottom: 10px;
-        color: white;
-    }
-    @media (min-width: 768px) {
-        & > header > .title {
-            color: var(--color-dark);
-        }
-    }
+const StyledHeader = styled.header`
+    ${tw`md:px-3 flex flex-row items-center justify-between flex-wrap mb-3 md:mb-0`}
 `;
 
 function StatisticByProvince() {
@@ -102,39 +80,37 @@ function StatisticByProvince() {
     }
 
     return (
-        <StyledStatisticByProvince>
-            <header>
-                <h3 className="title">
-                    By Province
-                </h3>
-            </header>
-            <ProvinceSelector
-                inputOnChange={(e) => handleSelectorInputChange(e)}
-                inputValue={inputTextProvince}
-                inputOnClick={handleSelectorClick}
-                itemOnClick={(e) => handleSelectorItemClick(e)}
-                optionIsActive={optionIsActive}
-                options={filterableFetchData}/>
+        <section>
+            <StyledHeader>
+                <Subtitle text="By Province"/>
+                <ProvinceSelector
+                    inputOnChange={(e) => handleSelectorInputChange(e)}
+                    inputValue={inputTextProvince}
+                    inputOnClick={handleSelectorClick}
+                    itemOnClick={(e) => handleSelectorItemClick(e)}
+                    optionIsActive={optionIsActive}
+                    options={filterableFetchData}/>
+            </StyledHeader>
             {dataProvince && (
-            <Row multiline style={{ marginTop: '10px'}}>
-                <Column size="2">
-                    <WarningCard title="Cases" value={dataProvince.kasus}/>
+            <Row>
+                <Column size="six">
+                    <WarningCard size="large" title="Cases" value={dataProvince.kasus}/>
                 </Column>
-                <Column size="2">
-                    <InfoCard title="Active" value={dataProvince.dirawat}/>
+                <Column size="six">
+                    <InfoCard size="large" title="Active" value={dataProvince.dirawat}/>
                 </Column>
-                <Column size="2">
-                    <SuccessCard title="Recovered" value={dataProvince.sembuh}/>
+                <Column size="six">
+                    <SuccessCard size="large" title="Recovered" value={dataProvince.sembuh}/>
                 </Column>
-                <Column size="2">
-                    <DangerCard title="Deaths" value={dataProvince.meninggal}/>
-                </Column>
+                <Column size="six">
+                    <DangerCard size="large" title="Deaths" value={dataProvince.meninggal}/>
+                </Column>    
             </Row>
             )}
             {fetchError && (
                 <p>{fetchError}</p>
             )}
-        </StyledStatisticByProvince>
+        </section>
     )
 }
 

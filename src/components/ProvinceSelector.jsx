@@ -1,66 +1,34 @@
-import styled from 'styled-components';
+import tw, { styled } from 'twin.macro';
 import { ReactComponent as ArrowDownIcon } from '../icons/arrowDown.svg';
 
 const StyledProvinceSelector = styled.div`
-    position: relative;
+    ${tw`relative border border-yellow-500`}
 `;
 
 const StyledProvinceSelectorInput = styled.input`
-    background-color: white;
-    padding: 10px 12px;
-    color: var(--color-dark);
-    width: 100%;
-    border: none;
-    appearance: none;
-    outline: none;
-    font-size: 1rem;
-    box-shadow: 0px 0px 2px 1px rgba(53,53,53,0.1);
-    border-radius: 7px;
-    &:focus {
-        box-shadow: 0px 0px 0px 2px rgba(53.53,53,0.2);
-    }
+    ${tw`bg-gray-800 text-gray-100 py-3
+    pl-4 pr-2 border-none outline-none rounded-md
+    shadow-md text-base appearance-none focus:bg-gray-600`}
 `;
 
 const StyledIconWrapper = styled.span`
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    margin: 5px;
-    & svg {
-        width: 32px;
-        height: auto;
-        fill: var(--color-dark-softer);
-    }
+    ${tw`absolute right-0 top-0 p-1 fill-current text-gray-100`} 
 `;
 
-const StyledProvinceOptions = styled.ul`
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-    display: ${props => props.isActive ? 'block' : 'none'};
-    position: absolute;
-    z-index: 10;
-    background-color: white;
-    border-radius: 10px;
-    max-height: 500px;
-    overflow-y: auto;
-    width: 100%;
-    height: auto;
-    box-shadow: 0px 2px 5px 0px rgba(53,53,53,0.1);
-`;
+const StyledArrowDownIcon = styled(ArrowDownIcon)`
+    ${tw`w-10 h-auto`}
+`
+
+const StyledProvinceOptions = styled.ul(({isActive}) => [
+    tw`absolute bg-gray-800 text-gray-100 hidden
+    overflow-auto shadow-md max-h-56`,
+    isActive && tw`block`
+])
 
 const StyledProvinceSelectorItem = styled.li`
-    padding: 7.5px 10px 7.5px 10px;
-    color: var(--color-dark-softer);
-    cursor: pointer;
-    &:first-child {
-        padding-top: 7.5px;
-    }
-    &:hover {
-        background-color: var(--color-dark);
-        color: white;
-    }
+    ${tw`p-3 text-gray-100`}
 `;
+
 
 function ProvinceSelector({ options, inputOnChange, inputOnClick, inputOnBlur, itemOnClick, inputValue, optionIsActive }) {
     return (
@@ -75,8 +43,7 @@ function ProvinceSelector({ options, inputOnChange, inputOnClick, inputOnBlur, i
                 }
             </StyledProvinceOptions>
             <StyledIconWrapper>
-                <ArrowDownIcon>
-                </ArrowDownIcon>
+                <StyledArrowDownIcon/>
             </StyledIconWrapper>
         </StyledProvinceSelector>
     )
